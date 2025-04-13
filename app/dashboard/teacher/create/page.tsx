@@ -75,10 +75,13 @@ export default function CreateExamPage() {
                   <p className="text-sm mt-1">MATH 401 | Dr. Jane Smith</p>
                   <p className="text-sm">Time: 60 minutes | Total Points: 100</p>
                   <div className="mt-4 mx-auto max-w-2xl text-sm text-left">
-                    <p><strong>Instructions:</strong> Answer all questions. Show all work for partial credit. No calculators allowed.</p>
+                    <p>
+                      <strong>Instructions:</strong> Answer all questions. Show all work for partial credit. No
+                      calculators allowed.
+                    </p>
                   </div>
                 </div>
-                
+
                 <div className="space-y-8">
                   <div>
                     <h3 className="font-bold border-b pb-1 mb-4">Section 1: Multiple Choice (25 points)</h3>
@@ -103,7 +106,7 @@ export default function CreateExamPage() {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div>
                     <h3 className="font-bold border-b pb-1 mb-4">Section 2: True/False (15 points)</h3>
                     <div className="space-y-6">
@@ -115,33 +118,38 @@ export default function CreateExamPage() {
                       </div>
                     </div>
                   </div>
-                  
+
                   {codingEnabled && (
                     <div>
                       <h3 className="font-bold border-b pb-1 mb-4">Section 3: Coding Problems (30 points)</h3>
                       <div className="space-y-6">
                         <div>
-                          <p className="font-medium">4. Write a function that calculates the derivative of a polynomial function.</p>
+                          <p className="font-medium">
+                            4. Write a function that calculates the derivative of a polynomial function.
+                          </p>
                           <div className="ml-6 mt-2">
                             <div className="bg-slate-100 p-4 rounded-md font-mono text-sm">
-                              <p>// Write your code here</p>\
-                              <p>function calculateDerivative(coefficients) {</p>\
+                              <p>// Write your code here</p>
+                              <p>function calculateDerivative(coefficients) {"{"}</p>
                               <p>&nbsp;&nbsp;// coefficients is an array representing a polynomial</p>
-                              <p>&nbsp;&nbsp;// e.g., [3, 2, 1] represents 3x&sup2; + 2x + 1</p>
                               <p>&nbsp;&nbsp;// Return the coefficients of the derivative</p>
-                              <p>}</p>
+                              <p>{"}"}</p>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   )}
-                  
+
                   <div>
-                    <h3 className="font-bold border-b pb-1 mb-4">Section {codingEnabled ? '4' : '3'}: Short Answer (30 points)</h3>
+                    <h3 className="font-bold border-b pb-1 mb-4">
+                      Section {codingEnabled ? "4" : "3"}: Short Answer (30 points)
+                    </h3>
                     <div className="space-y-6">
                       <div>
-                        <p className="font-medium">{codingEnabled ? '5' : '4'}. What is the derivative of f(x) = e^x?</p>
+                        <p className="font-medium">
+                          {codingEnabled ? "5" : "4"}. What is the derivative of f(x) = e^x?
+                        </p>
                         <div className="ml-6 mt-2">
                           <div className="border-b border-dashed border-slate-300 h-8"></div>
                         </div>
@@ -324,8 +332,8 @@ export default function CreateExamPage() {
                               Add programming exercises to your exam
                             </p>
                           </div>
-                          <Checkbox 
-                            id="coding-toggle" 
+                          <Checkbox
+                            id="coding-toggle"
                             checked={codingEnabled}
                             onCheckedChange={(checked) => setCodingEnabled(checked === true)}
                           />
@@ -500,7 +508,7 @@ export default function CreateExamPage() {
                       coding: true,
                     },
                   ].map((feature, i) => (
-                    <div key={i} className={`flex gap-3 ${feature.coding && !codingEnabled ? 'opacity-50' : ''}`}>
+                    <div key={i} className={`flex gap-3 ${feature.coding && !codingEnabled ? "opacity-50" : ""}`}>
                       <div className="p-1.5 rounded-full bg-[#0F172A]/10 h-fit">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"

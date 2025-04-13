@@ -1,7 +1,6 @@
 "use client"
 
 import { Badge } from "@/components/ui/badge"
-
 import { useState } from "react"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -646,6 +645,123 @@ export default function TeacherSettingsPage() {
                         </Select>
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="en
+                        <Label htmlFor="end-time" className="text-sm text-muted-foreground">
+                          End Time
+                        </Label>
+                        <Select defaultValue="7">
+                          <SelectTrigger id="end-time">
+                            <SelectValue placeholder="Select time" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {Array.from({ length: 24 }, (_, i) => (
+                              <SelectItem key={i} value={i.toString()}>
+                                {i === 0 ? "12 AM" : i < 12 ? `${i} AM` : i === 12 ? "12 PM" : `${i - 12} PM`}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
 
-\
+            <TabsContent value="preferences">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Display Preferences</CardTitle>
+                  <CardDescription>Customize your dashboard experience</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium">Interface Settings</h3>
+                    {[
+                      { title: "Enable Dark Mode", description: "Use dark theme across the platform" },
+                      { title: "Show Analytics on Dashboard", description: "Display analytics widgets on your dashboard" },
+                      { title: "Compact View", description: "Use a more compact layout to fit more content" },
+                      { title: "Show Quick Actions", description: "Display quick action buttons on dashboard" },
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center justify-between">
+                        <div className="space-y-0.5">
+                          <div className="font-medium">{item.title}</div>
+                          <div className="text-sm text-muted-foreground">{item.description}</div>
+                        </div>
+                        <Switch defaultChecked={i < 2} />
+                      </div>
+                    ))}
+                  </div>
+
+                  <Separator />
+
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium">Language & Region</h3>
+                    <div className="space-y-2">
+                      <Label htmlFor="language">Language</Label>
+                      <Select defaultValue="en">
+                        <SelectTrigger id="language">
+                          <SelectValue placeholder="Select language" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="en">English</SelectItem>
+                          <SelectItem value="es">Spanish</SelectItem>
+                          <SelectItem value="fr">French</SelectItem>
+                          <SelectItem value="de">German</SelectItem>
+                          <SelectItem value="zh">Chinese</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="timezone">Timezone</Label>
+                      <Select defaultValue="pst">
+                        <SelectTrigger id="timezone">
+                          <SelectValue placeholder="Select timezone" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="pst">Pacific Time (PST)</SelectItem>
+                          <SelectItem value="mst">Mountain Time (MST)</SelectItem>
+                          <SelectItem value="cst">Central Time (CST)</SelectItem>
+                          <SelectItem value="est">Eastern Time (EST)</SelectItem>
+                          <SelectItem value="utc">Coordinated Universal Time (UTC)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="date-format">Date Format</Label>
+                      <Select defaultValue="mdy">
+                        <SelectTrigger id="date-format">
+                          <SelectValue placeholder="Select format" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="mdy">MM/DD/YYYY</SelectItem>
+                          <SelectItem value="dmy">DD/MM/YYYY</SelectItem>
+                          <SelectItem value="ymd">YYYY/MM/DD</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                </CardContent>
+                <CardFooter className="flex justify-end border-t pt-4">
+                  <Button onClick={handleSave} disabled={saving}>
+                    {saving ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Saving...
+                      </>
+                    ) : (
+                      <>
+                        <Save className="mr-2 h-4 w-4" />
+                        Save Preferences
+                      </>
+                    )}
+                  </Button>
+                </CardFooter>
+              </Card>
+            </TabsContent>
+          </Tabs>
+        </div>
+      </DashboardSidebar>
+    );
+}
